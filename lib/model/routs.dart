@@ -7,7 +7,7 @@ import '../view/splashScreen.dart';
 class Routes {
   Map<String, WidgetBuilder> routeMap = {
     MainScreen.route: (context) => const MainScreen(),
-    SplashScreen.route: (context) => const SplashScreen(),
+    SplashScreen.route: (context) => SplashScreen(),
     DetailsScreen.route: (context) => const DetailsScreen(),
   };
 }

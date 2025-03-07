@@ -5,14 +5,17 @@ import 'package:test_2026/view/mainScreen.dart';
 import 'package:test_2026/viewModel/bloc/navigationBlock.dart';
 import '../viewModel/InharitedServices/ChangeNotifierServices.dart';
 import '../viewModel/bloc/colorThemeServices.dart';
+import '../viewModel/platformSpecificServices/platformSpecific.dart';
 
 class SplashScreen extends StatelessWidget {
   static const String route = "/splash";
+  final PlatformSpecific platformSpecific = PlatformSpecific();
 
-  const SplashScreen({super.key});
+  SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
 
     return Scaffold(
       body: Container(
@@ -21,6 +24,16 @@ class SplashScreen extends StatelessWidget {
 
             children: [
               SizedBox(height: 120,),
+              FutureBuilder(future: platformSpecific.getBatteryLevel(),
+                  builder: (context, snapshot)
+              {
+                if(snapshot.hasData)
+                  {
+                    return Text(snapshot.data.toString());
+                  }
+                return Column();
+              }
+              ),
               Expanded(child: Text(ColorThemeServices.of(context).msg)),
               Expanded(
                 child: Center(
